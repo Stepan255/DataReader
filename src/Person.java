@@ -1,5 +1,5 @@
 
-    public class DataFormat{
+    public class Person {
         private String LastName;
         private String FirstName;
         private String MiddleName;
@@ -7,7 +7,7 @@
         private String PhoneNumber;
         private Character Gender;
 
-        public DataFormat(String lastName, String firstName, String middleName, String dateOfBirth, String phoneNumber, Character gender) {
+        public Person (String lastName, String firstName, String middleName, String dateOfBirth, String phoneNumber, Character gender) {
             LastName = lastName;
             FirstName = firstName;
             MiddleName = middleName;
@@ -16,8 +16,8 @@
             Gender = gender;
         }
 
-        public static DataFormat nullDataFormat(){
-            return new DataFormat("", "", "", "", "", ' ');
+        public static Person  nullDataFormat(){
+            return new Person ("", "", "", "", "", ' ');
         }
 
         public String getLastName() {
@@ -66,6 +66,12 @@
 
         public void setGender(Character gender) {
             Gender = gender;
+        }
+
+        @Override
+        public String toString() {
+            return getLastName() + " " + getFirstName() + " " + getMiddleName() + " "
+                    + getDateOfBirth() + " " + getPhoneNumber() + " " + getGender();
         }
     };
 

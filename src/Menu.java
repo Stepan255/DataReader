@@ -1,8 +1,15 @@
-import java.io.File;
-
 public class Menu {
 
-    public DataFormat getDataFromConsole(){
+    public void start() {
+        while (true){
+            FileMenger fileMenger = new FileMenger();
+            fileMenger.openFolderRepository();
+            Person person = getDataFromConsole();
+            fileMenger.createFile(person.getLastName(), person.toString());
+        }
+        }
+
+    public Person getDataFromConsole(){
 
         do {
             System.out.println("To exit input 0.\n" +
@@ -17,7 +24,7 @@ public class Menu {
                 System.err.println(e.getMessage());
             }
         } while (true);
-        return DataFormat.nullDataFormat();
+        return Person.nullDataFormat();
     }
 
 }

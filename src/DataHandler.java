@@ -6,8 +6,8 @@ import java.text.SimpleDateFormat;
 
 public class DataHandler {
 
-    public static DataFormat dataHandler(String data) throws ExceptionEmptyData, ExceptionLengthData{
-        DataFormat df = startDataHandler(data);
+    public static Person dataHandler(String data) throws ExceptionEmptyData, ExceptionLengthData{
+        Person df = startDataHandler(data);
         String errLog = "";
         if (df.getFirstName().equals("")){errLog += "FirstName is empty; ";}
         if (df.getLastName().equals("")){errLog += "LastName is empty; ";}
@@ -19,12 +19,12 @@ public class DataHandler {
         return df;
     }
 
-    private static DataFormat startDataHandler(String data) throws ExceptionLengthData {
+    private static Person startDataHandler(String data) throws ExceptionLengthData {
         String[] rawData = data.split(" ");
         if (rawData.length != 6) {
             throw new ExceptionLengthData(rawData.length);
         }
-        DataFormat dataForm = DataFormat.nullDataFormat();
+        Person dataForm = Person.nullDataFormat();
         for (String row :
                 rawData) {
             if (isTel(row)) {
@@ -34,11 +34,11 @@ public class DataHandler {
             } else if (row.equals(String.copyValueOf(new char[]{'f'})) || row.equals(String.copyValueOf(new char[]{'m'}))) {
                 dataForm.setGender(row.charAt(0));
             } else if (row.matches("[A-Za-zА-Яа-я]+")) {
-                if (dataForm.getFirstName() == "") {
-                    dataForm.setFirstName(row);
-                } else if (dataForm.getLastName() == "") {
+                if (dataForm.getLastName().equals("")) {
                     dataForm.setLastName(row);
-                } else if (dataForm.getMiddleName() == "") {
+                } else if (dataForm.getFirstName().equals("")) {
+                    dataForm.setFirstName(row);
+                } else if (dataForm.getMiddleName().equals("")) {
                     dataForm.setMiddleName(row);
                 }
             }
